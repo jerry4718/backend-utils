@@ -1,0 +1,23 @@
+{
+  "name": "util-container",
+  "version": "1.0.0",
+  "description": "业务常用util合集",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^12.12.21",
+    "@typescript-eslint/eslint-plugin": "2.3.2",
+    "@typescript-eslint/experimental-utils": "2.3.2",
+    "@typescript-eslint/parser": "2.3.2",
+    "eslint": "6.5.1",
+    "eslint-formatter-autolinkable-stylish": "1.0.3",
+    "eslint-plugin-import": "2.18.2",
+    "eslint-plugin-jsdoc": "15.9.9",
+    "eslint-plugin-no-null": "1.0.2",
+    "typescript": "^3.7.3"
+  }
+}
