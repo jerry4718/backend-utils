@@ -81,7 +81,7 @@ export namespace DateUtil {
 
     // Some common format strings
     type maskKey = "default" | "timestamp" | "shortDate" | "mediumDate" | "longDate" | "fullDate" | "shortTime"
-        | "mediumTime" | "longTime" | "isoDate" | "isoTime" | "isoDateTime" | "isoUtcDateTime" | string;
+        | "mediumTime" | "longTime" | "isoDate" | "isoTime" | "isoDateTime" | "isoUtcDateTime";
     export const masks: { [key in maskKey]: string } = {
         default: "yyyy-MM-dd HH:mm:ss",
         timestamp: "yyyyMMddHHmmss",
@@ -102,7 +102,7 @@ export namespace DateUtil {
         timezone = /\b(?:[PMCEA][SDP]T|(?:Pacific|Mountain|Central|Eastern|Atlantic) (?:Standard|Daylight|Prevailing) Time|(?:GMT|UTC)(?:[-+]\d{4})?)\b/g,
         timezoneClip = /[^-+\dA-Z]/g;
 
-    export function format(date: Date = new Date(), mask: maskKey = "default", utc = false) {
+    export function format(date: Date = new Date(), mask: maskKey | string = "default", utc = false) {
         mask = String(masks[mask] || mask || masks.default);
 
         // Allow setting the utc argument via the mask

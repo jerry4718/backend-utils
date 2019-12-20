@@ -4,11 +4,11 @@ export namespace VarUtil {
     }
 
     export function typeOf(variable: any): string {
-        const tag: string = Object.prototype.toString.call(variable);
+        const tag: string = Object.prototype.toString.call(variable)
+            .replace(/]$/, "")
+            .split(" ")[1];
 
-        const match: string = tag.match(/(?<=\s)[\W\w]*(?=])/)[0];
-
-        return match.toLowerCase();
+        return tag.toLowerCase();
     }
 
     export function isNumber(variable: any): boolean {
