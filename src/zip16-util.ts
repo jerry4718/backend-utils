@@ -45,7 +45,7 @@ export namespace Zip16Util {
      * 对0~f进制的字符串按照进制转换规则执行编码
      */
     export function encode(str: string) {
-        const bin = binary(str, des4, hex);
+        const bin = binary(str.toLowerCase(), des4, hex);
         return [
             source(bin, 6, des6, zip),
             source(str.length.toString(2), 6, des6, zip)

@@ -1,7 +1,5 @@
-import { VarUtil } from "./var-util";
-
 export namespace MathUtil {
-    export function randomNumBoth(min: number, max: number) {
+    export function randomBetween(min: number, max: number) {
         const range = max - min;
         const rand = Math.random();
         return min + Math.round(rand * range);
@@ -68,10 +66,10 @@ export namespace MathUtil {
             throw Error(`${condition} is not valid`);
         }
 
-        const result: ctk[] = condition.map(exp => VarUtil.isArray(exp) ? calc(exp) : exp);
+        const result: ctk[] = condition.map(exp => Array.isArray(exp) ? calc(exp) : exp);
 
         const operator = result.shift();
-        const operate = getOperateFn(operator);
+        const operate = getOperateFn(operator as string);
 
         // console.log(JSON.stringify([operator, ...result]));
         // console.log();
@@ -81,21 +79,6 @@ export namespace MathUtil {
         }
 
         return Number(result[0]);
-    }
-
-    function getOperateFn(operator: string) {
-        switch (operator) {
-            case "+":
-                return MathUtil.add;
-            case "-":
-                return MathUtil.sub;
-            case "*":
-                return MathUtil.mul;
-            case "/":
-                return MathUtil.div;
-            default:
-                throw Error(`${operator} is not an operator`);
-        }
     }
 
     /**
@@ -206,17 +189,32 @@ export namespace MathUtil {
         return outputQueue;
     }
 
+    function getOperateFn(operator: string) {
+        switch (operator) {
+            case "+":
+                return add;
+            case "-":
+                return sub;
+            case "*":
+                return mul;
+            case "/":
+                return div;
+            default:
+                throw Error(`${operator} is not an operator`);
+        }
+    }
+
     function getResult(fir: nos, sec: nos, cur: nos) {
         let result;
         switch (cur) {
             case "+":
-                result = MathUtil.add(fir, sec); break;
+                result = add(fir, sec); break;
             case "-":
-                result = MathUtil.sub(fir, sec); break;
+                result = sub(fir, sec); break;
             case "*":
-                result = MathUtil.mul(fir, sec); break;
+                result = mul(fir, sec); break;
             case "/":
-                result = MathUtil.div(fir, sec); break;
+                result = div(fir, sec); break;
             default:
                 throw Error("invalid expression");
         }
